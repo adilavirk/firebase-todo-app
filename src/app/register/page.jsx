@@ -28,7 +28,7 @@ const Register = () => {
 
             router.push('/');
         }
-    }, [authUser, isLoading, router]);
+    }, [authUser, isLoading]);
 
 
     const onChangeHandler = (e) => {
