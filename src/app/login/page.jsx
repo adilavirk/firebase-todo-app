@@ -24,7 +24,7 @@ const Login = () => {
         if (!isLoading && authUser) {
             router.push("/");
         }
-    }, [authUser, isLoading]);
+    }, [authUser, isLoading, router]);
 
     const onChangeHandler = (e) => {
         const { name, value } = e.target;
