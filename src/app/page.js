@@ -25,7 +25,7 @@ export default function Home() {
   //states to set input values into db and to get data from database in array
   const [todoInput, setTodoInput] = useState("");
   const [getTodos, setGetTodos] = useState([]);
-  // function to show toast messgae
+  // function to show toast message
   const showToastMessage = () => {
     toast.success("Success Notification !", {
       position: toast.POSITION.TOP_RIGHT,
@@ -43,7 +43,7 @@ export default function Home() {
     if (authUser) {
       fetchTodos(authUser.uid);
     }
-  }, [authUser, isLoading]);
+  }, [authUser, isLoading, router]);
 
   const addToDos = async () => {
     try {
@@ -58,7 +58,7 @@ export default function Home() {
       fetchTodos(authUser.uid);
       setTodoInput("");
     } catch (error) {
-      console.log("error occured while adding todo", error);
+      console.log("error occurred while adding todo", error);
     }
   };
 
@@ -76,7 +76,7 @@ export default function Home() {
       // const collectionName = collection(db, "todos");
       // await getDocs(collectionName);
     } catch (error) {
-      console.log("error occured while fetching todos", error);
+      console.log("error occurred while fetching todos", error);
     }
   };
 
@@ -85,10 +85,10 @@ export default function Home() {
       await deleteDoc(doc(db, "todos", todoId));
       fetchTodos(authUser.uid);
     } catch (error) {
-      console.log("error occured while deleting todo", error);
+      console.log("error occurred while deleting todo", error);
     }
   };
-  const makeAsCompleteHander = async (event, docId) => {
+  const makeAsCompleteHandler = async (event, docId) => {
     try {
       const docRef = doc(db, "todos", docId);
       await updateDoc(docRef, {
@@ -96,7 +96,7 @@ export default function Home() {
       });
       fetchTodos(authUser.uid);
     } catch (error) {
-      console.log("error occured while updating todo", error);
+      console.log("error occurred while updating todo", error);
     }
   };
   const onKeyUp = (event) => {
@@ -153,7 +153,7 @@ export default function Home() {
                     type="checkbox"
                     className="w-4 h-4 accent-green-400 rounded-lg"
                     checked={todo.completed}
-                    onChange={(e) => makeAsCompleteHander(e, todo.id)}
+                    onChange={(e) => makeAsCompleteHandler(e, todo.id)}
                   />
                   <label
                     htmlFor={`todo-${todo.id}`}

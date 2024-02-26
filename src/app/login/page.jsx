@@ -24,7 +24,7 @@ const Login = () => {
         if (!isLoading && authUser) {
             router.push("/");
         }
-    }, [authUser, isLoading]);
+    }, [authUser, isLoading, router]);
 
     const onChangeHandler = (e) => {
         const { name, value } = e.target;
@@ -76,7 +76,8 @@ const Login = () => {
             });
 
         } catch (error) {
-            toast.error('Login failed. Please check your credentials.' + error.message);
+            toast.error('Login failed. Please check your credentials.' + error.message.replace(/'/g, "&apos;"));
+
         }
 
 
@@ -90,7 +91,7 @@ const Login = () => {
                 <div className="p-8 w-[600px]">
                     <h1 className="text-6xl font-semibold">Login</h1>
                     <p className="mt-6 ml-1">
-                        Don't have an account ?{" "}
+                        Don&apos;t have an account ?{" "}
                         <Link
                             href="/register"
                             className="underline hover:text-blue-400 cursor-pointer"

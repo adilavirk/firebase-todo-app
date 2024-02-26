@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useEffect, useState } from 'react';
 import { auth } from '../(firebase)/firebase';
 import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -9,8 +7,6 @@ import { useAuth } from '../(firebase)/auth';
 import { useRouter } from 'next/navigation';
 import Loader from '../(components)/Loader';
 import { toast } from 'react-toastify';
-
-
 
 const Register = () => {
     const [state, setState] = useState({
@@ -25,10 +21,9 @@ const Register = () => {
 
     useEffect(() => {
         if (!isLoading && authUser) {
-
             router.push('/');
         }
-    }, [authUser, isLoading]);
+    }, [authUser, isLoading, router]);
 
 
     const onChangeHandler = (e) => {
@@ -43,7 +38,6 @@ const Register = () => {
 
     const signupHandler = async () => {
         if (!state.name || !state.email || !state.password) {
-
             toast.error('Registration failed. Please try again.')
             return;
         }
@@ -59,7 +53,6 @@ const Register = () => {
                 uid: user.uid,
                 email: user.email,
                 username: user.displayName
-
             });
             console.log(user);
 
@@ -95,8 +88,6 @@ const Register = () => {
 
         }
     };
-
-
 
     return isLoading || (!isLoading && authUser) ? <Loader /> : (
         <main className="flex lg:h-[100vh]">
@@ -174,4 +165,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;
