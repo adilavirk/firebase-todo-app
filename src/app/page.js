@@ -161,7 +161,7 @@ export default function Home() {
                       todo.completed ? "line-through" : ""
                     }`}
                   >
-                    {todo.content}
+                    {todo.content.replace(/'/g, "&apos;")}
                   </label>
                 </div>
 
